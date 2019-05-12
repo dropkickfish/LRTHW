@@ -771,6 +771,7 @@ _____________/_ __ \_____________}
   exit()
 end
 
+# Need to find a way to make this persistent. Improvement needed for sorting.
 def high_scores
   system('cls')
   Computer.scores
@@ -899,6 +900,7 @@ system('cls')
   options
 end
 
+# Converts time in minutes to HH:mm format
 def time_conversion(minutes)
     hours = minutes / 60
     rest = minutes % 60
