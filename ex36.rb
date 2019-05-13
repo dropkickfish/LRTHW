@@ -771,7 +771,7 @@ _____________/_ __ \_____________}
   exit()
 end
 
-# Need to find a way to make this persistent. Improvement needed for sorting.
+# Need to find a way to make this persistent.
 def high_scores
   system('cls')
   Computer.scores
@@ -787,6 +787,20 @@ def high_scores
     puts "Invalid input"
   high_scores
 end
+end
+
+def load_scores
+  load_alerts = File.open("alerts.txt", "r")
+  load_alerts.each do |line|
+    $top_alerts.push(line.chomp.to_i)
+  end
+  load_alerts.close
+
+  load_emails = File.open("emails.txt", "r")
+  load_emails.each do |line|
+    $top_emails << line.chomp.to_i
+  end
+  load_emails.close
 end
 
 def options
@@ -844,17 +858,6 @@ If the queue is piling up, remember to grab a coffee for a speed boost.
 
 There are #{time_conversion($turns*15)} hours til quitting time
 }
-  # if $difficulty == 1
-  #   $queue_size =  Inbox.easy
-  #   puts "You have #{$queue_size} emails in your queue."
-  # elsif $difficulty == 2
-  #   $queue_size =  Inbox.medium
-  #   puts "You have #{$queue_size} emails in your queue."
-  # elsif $difficulty == 3
-  #   $queue_size =  Inbox.hard
-  #   puts "You have #{$queue_size} emails in your queue."
-  # else exit(DifficultyFuckedUp)
-  # end
   puts "What do you do?"
   options
 end
@@ -876,6 +879,22 @@ def reset
   $booking_alerts = 0
 
   $explode = 0
+end
+
+def save_scores
+  save_alerts = File.open("alerts.txt", "w")
+
+  $top_alerts.each do |item|
+   save_alerts.puts item
+  end
+  save_alerts.close
+
+ save_emails = File.open("emails.txt", "w")
+
+ $top_emails.each do |item|
+  save_emails.puts item
+ end
+ save_alerts.close
 end
 
 def status
@@ -911,6 +930,7 @@ def the_end
   system('cls')
   $top_alerts.push($booking_alerts)
   $top_emails.push($responses)
+  save_scores
   Computer.end
   if $queue_size < 3
     puts "\nThat's quitting time!"
@@ -950,6 +970,7 @@ def turn
 end
 
 def welcome
+  load_scores
   system('cls')
 Computer.welcome
 sleep 1
