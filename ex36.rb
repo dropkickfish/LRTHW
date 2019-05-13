@@ -472,8 +472,8 @@ module Computer
         }
       end
       def Computer.scores
-         alerts = "%02d" % $top_alerts.sort.first
-         emails = "%02d" % $top_emails.sort.first
+         alerts = "%02d" % $top_alerts.sort.reverse.first
+         emails = "%02d" % $top_emails.sort.reverse.first
         puts %Q{
            ____________________________
           !\\_________________________/!\\
