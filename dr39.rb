@@ -61,13 +61,14 @@ puts "-" *20
 # Find the Ruby documentation for hashes and try to do even more things to them.
 
 # Hashes can use an alternative syntax - you don't need to use => but can use : instead
-# Apparently you can use them to have named parameters in functions, e.g. below
+# Apparently you can use them to have named parameters in functions, I don't quite get the e.g. in the
+# official documentation, but I've copied it below to play with later
 
-self.create(name: "John Doe", age: 27)
+# Person.create(name: "John Doe", age: 27)
+#
+# def self.create(params)
+#   @name = params[:name]
+#   @age  = params[:age]
+# end
 
-def self.create(params)
-  @name = params[:name]
-  @age  = params[:age]
-end
-
-self.create(Person)
+# You can invert hash keys and values using .invert
