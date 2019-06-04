@@ -1,5 +1,5 @@
 class Song
-  def initilaize(lyrics)
+  def initilize(lyrics)
     @lyrics = lyrics
   end
 
