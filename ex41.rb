@@ -88,3 +88,16 @@ loop do
     puts "\nANSWER:  %s\n\n" % answer
   end
 end
+
+#Homework - READ MORE CODE - off to github we go
+#instead of lurking our work hub, I tried a couple new projects
+#The AirBnB style guide includes some snippets and also some style tips
+#https://github.com/airbnb/ruby
+
+#found a training repo which I've forkee
+#https://github.com/dropkickfish/ruby
+#read the classes lesson and learned about duck typing
+
+#found the ruby_warrior project
+#https://github.com/ryanb/ruby-warrior/blob/master/lib/ruby_warrior/game.rb
+#Awesome example of using classes for a new game flow which I may refer back to
