@@ -1,3 +1,17 @@
+# Change it! Maybe you hate this game. It could be too violent, or maybe you aren't into sci-fi. Get the game working, then change it to what you like. This is your computer; you make it do what you want.
+
+# I have a bug in this code. Why is the door lock guessing 11 times? - because it was set to <10 instead of <=10
+
+# Explain how returning the next room works.
+#It exits the function at that point and sets the class variable of Map to the returned string. I think what happens is this is
+#returned to  the Map.new function as the value for initialize
+
+# Add cheat codes to the game so you can get past the more difficult rooms. I can do this with two words on one line.
+
+
+# Go back to my description and analysis, then try to build a small combat system for the hero and the various Gothons he encounters.
+# This is actually a small version of something called a "finite state machine." Read about them. They might not make sense, but try anyway.
+
 class Scene
   def enter()
     puts "This scene is not yet configured. Subclass it and implement enter()."
@@ -101,11 +115,11 @@ class LaserWeaponArmory < Scene
     puts "wrong 10 times then the lock closes forever and you can't"
     puts "get the bomb.  The code is 3 digits."
     code = "#{rand(1..9)}#{rand(1..9)}#{rand(1..9)}"
-    print "[keypad]> "
+    print "[keypad #{code}]> " #CHEAT CODE ADDED - one word on one line, your move Zed
     guess = $stdin.gets.chomp
     guesses = 0
 
-    while guess != code && guesses < 10
+    while guess != code && guesses <= 10
       puts "BZZZZEDDD!"
       guesses += 1
       print "[keypad]> "
