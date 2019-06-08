@@ -7,10 +7,14 @@
 #returned to  the Map.new function as the value for initialize
 
 # Add cheat codes to the game so you can get past the more difficult rooms. I can do this with two words on one line.
-
+# Added and identified with comment
 
 # Go back to my description and analysis, then try to build a small combat system for the hero and the various Gothons he encounters.
+# I really don't want to do this right now after the rabbit hole I fell into with the last game. I'll come back to this
+
 # This is actually a small version of something called a "finite state machine." Read about them. They might not make sense, but try anyway.
+# Confirmed, it doesn't make sense. I mean it does. A bit. Just dense as. MIT link below
+#https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-01sc-introduction-to-electrical-engineering-and-computer-science-i-spring-2011/unit-2-signals-and-systems/signals-and-systems/MIT6_01SCS11_chap04.pdf
 
 class Scene
   def enter()
