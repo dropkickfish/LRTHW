@@ -14,7 +14,7 @@ class Player
   oldx = $playerx
   oldy = $playery
     $playery -= 1
-    if $playery.to_i < 0 || $playery.to_i > 4
+    if $playery.to_i < 0 || $playery.to_i > 3
       puts "You can't move there"
       $playery += 1
 
@@ -30,7 +30,7 @@ def self.movedown
 oldx = $playerx
 oldy = $playery
   $playery += 1
-  if $playery.to_i < 0 || $playery.to_i > 4
+  if $playery.to_i < 0 || $playery.to_i > 3
     puts "You can't move there"
     $playery -= 1
 
@@ -46,7 +46,7 @@ def self.moveleft
 oldx = $playerx
 oldy = $playery
   $playerx -= 1
-  if $playery.to_i < 0 || $playery.to_i > 4
+  if $playerx.to_i < 0 || $playerx.to_i > 4
     puts "You can't move there"
     $playerx += 1
 
@@ -62,7 +62,7 @@ def self.moveright
 oldx = $playerx
 oldy = $playery
   $playerx += 1
-  if $playery.to_i < 0 || $playery.to_i > 4
+  if $playerx.to_i < 0 || $playerx.to_i > 4
     puts "You can't move there"
     $playerx -= 1
 
