@@ -66,12 +66,18 @@ def randomstartpos
 # Returned the values causing problems and then was able to debug and fix
 # Turns out I'm a moron who can't count from 0
 
-# rescue
-#   puts "Some moron gave the wrong co-ordinates"
-#   puts "Player X = "$playerx
-#   puts "Player Y = "$playery
-#   exit(0)
-# end
+rescue
+  puts "Some moron gave the wrong co-ordinates"
+  puts "Player X = " $playerx
+  puts "Player Y = " $playery
+  puts "Monster X = " $monsterx
+  puts "Monster  Y = " $monstery
+  puts "Treasure X = " $treasurex
+  puts "Treasure Y = " $treasurey
+  puts "Exit X = " $exitx
+  puts "Exit Y = " $exity
+  exit(0)
+end
 
 end
 
