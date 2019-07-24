@@ -1,5 +1,3 @@
-require_relative 'Engine'
-
 $playerx = 0
 $playery = 0
 
@@ -17,7 +15,6 @@ $grid = [
   [' ',' ',' ',' ',' '],
   [' ',' ',' ',' ',' '],
   [' ',' ',' ',' ',' ']
-  # [' ',' ',' ',' ',' '],
 ]
 
 def display_grid
@@ -44,47 +41,48 @@ def display_grid
 end
 
 def randplayerstart
-  $playery = rand(5)
-  $playerx = rand(4)
-  $grid[$playerx.to_i][$playery.to_i] = '@'
+  $playerx = rand(5)
+  $playery = rand(4)
+  $grid[$playery.to_i][$playerx.to_i] = '@'
 
 end
 
 def randmonsterstart
-  $monstery = rand(5)
-  $monsterx = rand(4)
-  if $grid[$monsterx.to_i][$monstery.to_i].include? '@'
+  $monsterx = rand(5)
+  $monstery = rand(4)
+  if $grid[$monstery.to_i][$monsterx.to_i].include? '@'
     randmonsterstart
   else
-    $grid[$monsterx.to_i][$monstery.to_i] = 'M'
+    $grid[$monstery.to_i][$monsterx.to_i] = 'M'
 end
 end
 
 def randtreasurestart
-  $treasurey = rand(5)
-  $treasurex = rand(4)
+  $treasurex = rand(5)
+  $treasurey = rand(4)
 
-  if  $grid[$treasurex.to_i][$treasurey.to_i].include?('@')||$grid[$treasurex.to_i][$treasurey.to_i].include?('M')
+  if  $grid[$treasurey.to_i][$treasurex.to_i].include?('@'||'M')
     randtreasurestart
 
   else
-  $grid[$treasurex.to_i][$treasurey.to_i] = '£'
+  $grid[$treasurey.to_i][$treasurex.to_i] = '£'
 
   end
 
 end
 
 def randexitstart
-  $exity = rand(5)
-  $exitx = rand(4)
-  if   $grid[$exitx.to_i][$exit.to_i].include?('@')||$grid[$exitx.to_i][$exit.to_i].include?('M')||$grid[$exitx.to_i][$exit.to_i].include?('£')
+  $exitx = rand(5)
+  $exity = rand(4)
+  if   $grid[$exity.to_i][$exitx.to_i].include?('@'||'M'||'£')
     randexitstart
   else
-  $grid[$exitx.to_i][$exit.to_i] = '>'
+  $grid[$exity.to_i][$exitx.to_i] = '>'
 end
 end
 
 def startpos
+
   randplayerstart
   randmonsterstart
   randtreasurestart
@@ -92,7 +90,10 @@ def startpos
 
 end
 
-startpos
+class Grid
 
-
-display_grid
+  def initialize
+    startpos
+    display_grid
+  end
+end
