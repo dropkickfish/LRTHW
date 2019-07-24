@@ -68,14 +68,14 @@ def randomstartpos
 
 rescue
   puts "Some moron gave the wrong co-ordinates"
-  puts "Player X = " $playerx
-  puts "Player Y = " $playery
-  puts "Monster X = " $monsterx
-  puts "Monster  Y = " $monstery
-  puts "Treasure X = " $treasurex
-  puts "Treasure Y = " $treasurey
-  puts "Exit X = " $exitx
-  puts "Exit Y = " $exity
+  puts "Player X = #{$playerx}"
+  puts "Player Y = #{$playery}"
+  puts "Monster X = #{$monsterx}"
+  puts "Monster  Y = #{$monstery}"
+  puts "Treasure X = #{$treasurex}"
+  puts "Treasure Y = #{$treasurey}"
+  puts "Exit X = #{$exitx}"
+  puts "Exit Y = #{$exity}"
   exit(0)
 end
 
