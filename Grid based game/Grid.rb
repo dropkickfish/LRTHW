@@ -43,45 +43,56 @@ def display_grid
 )
 end
 
-
-def randomstartpos
-  begin
-  $playerx = rand(5)
-  $playery = rand(4)
+def randplayerstart
+  $playery = rand(5)
+  $playerx = rand(4)
   $grid[$playerx.to_i][$playery.to_i] = '@'
 
-  $monsterx = rand(5)
-  $monstery = rand(4)
-  $grid[$monsterx.to_i][$monstery.to_i] = 'M'
+end
 
-  $treasurex = rand(5)
-  $treasurey = rand(4)
+def randmonsterstart
+  $monstery = rand(5)
+  $monsterx = rand(4)
+  if $grid[$monsterx.to_i][$monstery.to_i].include? '@'
+    randmonsterstart
+  else
+    $grid[$monsterx.to_i][$monstery.to_i] = 'M'
+end
+end
+
+def randtreasurestart
+  $treasurey = rand(5)
+  $treasurex = rand(4)
+
+  if  $grid[$treasurex.to_i][$treasurey.to_i].include?('@')||$grid[$treasurex.to_i][$treasurey.to_i].include?('M')
+    randtreasurestart
+
+  else
   $grid[$treasurex.to_i][$treasurey.to_i] = '£'
 
-  $exitx = rand(5)
-  $exity = rand(4)
+  end
+
+end
+
+def randexitstart
+  $exity = rand(5)
+  $exitx = rand(4)
+  if   $grid[$exitx.to_i][$exit.to_i].include?('@')||$grid[$exitx.to_i][$exit.to_i].include?('M')||$grid[$exitx.to_i][$exit.to_i].include?('£')
+    randexitstart
+  else
   $grid[$exitx.to_i][$exit.to_i] = '>'
-
-# Figured now was a good time to learn about errors
-# Returned the values causing problems and then was able to debug and fix
-# Turns out I'm a moron who can't count from 0
-
-rescue
-  puts "Some moron gave the wrong co-ordinates"
-  puts "Player X = #{$playerx}"
-  puts "Player Y = #{$playery}"
-  puts "Monster X = #{$monsterx}"
-  puts "Monster  Y = #{$monstery}"
-  puts "Treasure X = #{$treasurex}"
-  puts "Treasure Y = #{$treasurey}"
-  puts "Exit X = #{$exitx}"
-  puts "Exit Y = #{$exity}"
-  exit(0)
 end
+end
+
+def startpos
+  randplayerstart
+  randmonsterstart
+  randtreasurestart
+  randexitstart
 
 end
 
-randomstartpos
+startpos
 
 
 display_grid
