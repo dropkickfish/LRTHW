@@ -43,25 +43,39 @@ def display_grid
 )
 end
 
+
 def randomstartpos
-  $playerx = rand(6)
-  $playery = rand(5)
+  begin
+  $playerx = rand(5)
+  $playery = rand(4)
   $grid[$playerx.to_i][$playery.to_i] = '@'
 
-  $monsterx = rand(6)
-  $monstery = rand(5)
+  $monsterx = rand(5)
+  $monstery = rand(4)
   $grid[$monsterx.to_i][$monstery.to_i] = 'M'
 
-  $treasurex = rand(6)
-  $treasurey = rand(5)
+  $treasurex = rand(5)
+  $treasurey = rand(4)
   $grid[$treasurex.to_i][$treasurey.to_i] = '£'
 
-  $exitx = rand(6)
-  $exity = rand(5)
+  $exitx = rand(5)
+  $exity = rand(4)
   $grid[$exitx.to_i][$exit.to_i] = '>'
+
+# Figured now was a good time to learn about errors
+# Returned the values causing problems and then was able to debug and fix
+# Turns out I'm a moron who can't count from 0
+
+# rescue
+#   puts "Some moron gave the wrong co-ordinates"
+#   puts "Player X = "$playerx
+#   puts "Player Y = "$playery
+#   exit(0)
+# end
 
 end
 
 randomstartpos
+
 
 display_grid
