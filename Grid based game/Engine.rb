@@ -1,5 +1,6 @@
 require_relative 'grid'
 require_relative 'player'
+require_relative 'monster'
 
 module Engine
   def self.collisioncheck
@@ -34,9 +35,17 @@ end
 Grid.new
 Player.moveup
 Engine.collisioncheck
+Monster.new.send(Monster.instance_methods(false).sample)
+Engine.collisioncheck
 Player.moveleft
+Engine.collisioncheck
+Monster.new.send(Monster.instance_methods(false).sample)
 Engine.collisioncheck
 Player.movedown
 Engine.collisioncheck
+Monster.new.send(Monster.instance_methods(false).sample)
+Engine.collisioncheck
 Player.moveright
+Engine.collisioncheck
+Monster.new.send(Monster.instance_methods(false).sample)
 Engine.collisioncheck
