@@ -34,8 +34,13 @@ You encounter a monster, do you:
        self.options
    end
    elsif choice == "Flee"
-     Playermove.(Playermove.instance_methods(false).sample)
+     $grid[$monstery.to_i][$monsterx.to_i] = 'M'
    puts "You run in a random direction"
+#need to figure out better random system
+   $playerx = rand(5)
+   $playery = rand(4)
+   $grid[$playery.to_i][$playerx.to_i] = '@'
+   display_grid
    else
      puts "Invalid choice"
      Fight.options
