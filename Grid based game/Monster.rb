@@ -1,6 +1,14 @@
 class Monster
+  def initialize
+    $monsteratt = (rand(1..10))
+    $monsterdef = (rand(1..10))
+    $monsterhp = 10
+  end
+end
 
-  def moveup
+class Monstermove
+
+  def up
   oldx = $monsterx
   oldy = $monstery
     $monstery -= 1
@@ -10,11 +18,12 @@ class Monster
     else
       $grid[$monstery.to_i][$monsterx.to_i] = 'M'
       $grid[oldy.to_i][oldx.to_i] = ' '
+      puts "The monster has moved"
       display_grid
 end
 end
 
-def movedown
+def down
 oldx = $monsterx
 oldy = $monstery
   $monstery += 1
@@ -24,11 +33,12 @@ oldy = $monstery
   else
     $grid[$monstery.to_i][$monsterx.to_i] = 'M'
     $grid[oldy.to_i][oldx.to_i] = ' '
+    puts "The monster has moved"
     display_grid
 end
 end
 
-def moveleft
+def left
 oldx = $monsterx
 oldy = $monstery
   $monsterx -= 1
@@ -38,11 +48,12 @@ oldy = $monstery
   else
     $grid[$monstery.to_i][$monsterx.to_i] = 'M'
     $grid[oldy.to_i][oldx.to_i] = ' '
+    puts "The monster has moved"
     display_grid
 end
 end
 
-def moveright
+def right
 oldx = $monsterx
 oldy = $monstery
   $monsterx += 1
@@ -52,6 +63,7 @@ oldy = $monstery
   else
     $grid[$monstery.to_i][$monsterx.to_i] = 'M'
     $grid[oldy.to_i][oldx.to_i] = ' '
+    puts "The monster has moved"
     display_grid
 end
 end

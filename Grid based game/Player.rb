@@ -10,14 +10,37 @@ class Player
     $playername = input
   end
 
-  def self.moveup
+  def self.options
+  puts "Which way will you move?"
+  puts ">"
+  choice = $stdin.gets.chomp
+  if choice == "up"
+    Playermove.up
+  end
+  if choice == "right"
+    Playermove.right
+  end
+  if choice == "down"
+    Playermove.down
+  end
+  if choice == "left"
+    Playermove.left
+  end
+  end
+
+end
+
+class Playermove
+
+
+  def self.up
   oldx = $playerx
   oldy = $playery
     $playery -= 1
     if $playery.to_i < 0 || $playery.to_i > 3
       puts "You can't move there"
       $playery += 1
-
+      Player.options
     else
       $grid[$playery.to_i][$playerx.to_i] = '@'
       $grid[oldy.to_i][oldx.to_i] = ' '
@@ -26,14 +49,14 @@ class Player
 end
 end
 
-def self.movedown
+def self.down
 oldx = $playerx
 oldy = $playery
   $playery += 1
   if $playery.to_i < 0 || $playery.to_i > 3
     puts "You can't move there"
     $playery -= 1
-
+    Player.options
   else
     $grid[$playery.to_i][$playerx.to_i] = '@'
     $grid[oldy.to_i][oldx.to_i] = ' '
@@ -42,14 +65,14 @@ oldy = $playery
 end
 end
 
-def self.moveleft
+def self.left
 oldx = $playerx
 oldy = $playery
   $playerx -= 1
   if $playerx.to_i < 0 || $playerx.to_i > 4
     puts "You can't move there"
     $playerx += 1
-
+    Player.options
   else
     $grid[$playery.to_i][$playerx.to_i] = '@'
     $grid[oldy.to_i][oldx.to_i] = ' '
@@ -58,14 +81,14 @@ oldy = $playery
 end
 end
 
-def self.moveright
+def self.right
 oldx = $playerx
 oldy = $playery
   $playerx += 1
   if $playerx.to_i < 0 || $playerx.to_i > 4
     puts "You can't move there"
     $playerx -= 1
-
+    Player.options
   else
     $grid[$playery.to_i][$playerx.to_i] = '@'
     $grid[oldy.to_i][oldx.to_i] = ' '
