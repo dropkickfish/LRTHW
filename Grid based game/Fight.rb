@@ -25,13 +25,21 @@ You encounter a monster, do you:
        $grid[$monstery.to_i][$monsterx.to_i] = ' '
        $grid[$playery.to_i][$playerx.to_i] = '@'
        $monsterhp=0
+       $kills+=1
+       if $mtreasure > 0
+         puts "The monster dropped #{$mtreasure} pieces of treasure"
+         dropped = $mtreasure
+         $treasure += dropped
+         display_grid
+       end
      else
        dmg = rand(1..3)
        puts "The monster attacks"
        puts "The monster does #{dmg} dmg points"
        $playerhp=$playerhp-dmg
        puts "You have #{$playerhp} hp"
-       self.options
+       display_grid
+       Player.options
    end
    elsif choice == "Flee"
      $grid[$monstery.to_i][$monsterx.to_i] = 'M'

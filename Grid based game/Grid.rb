@@ -36,10 +36,10 @@ def display_grid
       |   |   |   |   |   |                Your DF is #{$playerdef}
       | #{$grid[2][0]} | #{$grid[2][1]} | #{$grid[2][2]} | #{$grid[2][3]} | #{$grid[2][4]} |
       |   |   |   |   |   |
-      +-------------------+
-      |   |   |   |   |   |
+      +-------------------+                Kills: #{$kills}
+      |   |   |   |   |   |                Treasure: #{$treasure}
       | #{$grid[3][0]} | #{$grid[3][1]} | #{$grid[3][2]} | #{$grid[3][3]} | #{$grid[3][4]} |
-      |   |   |   |   |   |
+      |   |   |   |   |   |                Floor: #{$floor}
       +---+---+---+---+---+
 
 )
@@ -95,10 +95,51 @@ def startpos
 
 end
 
+def nextpos
+
+  Clear.floor
+  randmonsterstart
+  randtreasurestart
+  randexitstart
+  display_grid
+end
+
+class Clear
+  def self.all
+    Clear.player
+    Clear.monster
+    Clear.treasure
+    Clear.exit
+  end
+  def self.floor
+    Clear.monster
+    Clear.treasure
+    Clear.exit
+  end
+  def self.player
+    $grid[$playery.to_i][$playerx.to_i] = ' '
+
+  end
+  def self.monster
+    $grid[$monstery.to_i][$monsterx.to_i] = ' '
+  end
+  def self.treasure
+    $grid[$treasurey.to_i][$treasurex.to_i] = ' '
+  end
+  def self.exit
+    $grid[$exity.to_i][$exitx.to_i] = ' '
+  end
+end
+
 class Grid
 
   def initialize
     startpos
+    display_grid
+  end
+  def self.next
+    nextpos
+    $grid[$playery.to_i][$playerx.to_i] = '@'
     display_grid
   end
 end

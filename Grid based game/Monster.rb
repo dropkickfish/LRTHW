@@ -1,8 +1,9 @@
 class Monster
   def initialize
-    $monsteratt = (rand(1..10))
-    $monsterdef = (rand(1..10))
+    $monsteratt = (rand(1..3))
+    $monsterdef = (rand(1..3))
     $monsterhp = 10
+    $mtreasure = 0
   end
 end
 
