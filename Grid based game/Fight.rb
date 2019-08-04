@@ -21,16 +21,22 @@ You encounter a monster, do you:
    choice = $stdin.gets.chomp
    if choice == "Fight"
      if $playeratt > $monsterdef || $monsterhp < 1
-       puts "You killed a #{$mpersonality} monster"
+       display_grid
+      puts "You killed a #{$mpersonality} monster"
        $grid[$monstery.to_i][$monsterx.to_i] = ' '
        $grid[$playery.to_i][$playerx.to_i] = '@'
        $monsterhp=0
+       $monsterx = 'nil'
+       $monstery = 'nil'
        $kills+=1
        if $mtreasure > 0
          puts "The monster dropped #{$mtreasure} pieces of treasure"
          dropped = $mtreasure
          $treasure += dropped
          display_grid
+       end
+       if $xexists == 0
+         nextfloor
        end
      else
        mdmg = rand(1..3)

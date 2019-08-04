@@ -45,29 +45,31 @@ def display_grid
 )
 end
 
-def randplayerstart
+class Start
+
+def self.player
   $playerx = rand(5)
   $playery = rand(4)
   $grid[$playery.to_i][$playerx.to_i] = '@'
 
 end
 
-def randmonsterstart
+def self.monster
   $monsterx = rand(5)
   $monstery = rand(4)
   if $grid[$monstery.to_i][$monsterx.to_i].include? '@'
-    randmonsterstart
+    Start.monster
   else
-    $grid[$monstery.to_i][$monsterx.to_i] = $mtoken
+    $grid[$monstery.to_i][$monsterx.to_i] = "#{$mtoken}"
 end
 end
 
-def randtreasurestart
+def self.treasure
   $treasurex = rand(5)
   $treasurey = rand(4)
-
-  if  $grid[$treasurey.to_i][$treasurex.to_i].include?('@'||$mtoken)
-    randtreasurestart
+  $texists = 1
+  if  $grid[$treasurey.to_i][$treasurex.to_i].include?('@'||"#{$mtoken}")
+    Start.treasure
 
   else
   $grid[$treasurey.to_i][$treasurex.to_i] = '£'
@@ -76,31 +78,34 @@ def randtreasurestart
 
 end
 
-def randexitstart
+def self.exit
   $exitx = rand(5)
   $exity = rand(4)
-  if   $grid[$exity.to_i][$exitx.to_i].include?('@'||$mtoken||'£')
-    randexitstart
+  $xexists = 1
+  if   $grid[$exity.to_i][$exitx.to_i].include?('@'||"#{$mtoken}"||'£')
+    Start.exit
   else
   $grid[$exity.to_i][$exitx.to_i] = '>'
 end
 end
 
-def startpos
-
-  randplayerstart
-  randmonsterstart
-  randtreasurestart
-  randexitstart
-
+def self.all
+  Start.player
+  Start.exit
+  Start.monster
+  Start.treasure
 end
 
-def nextpos
+def self.floor
+  Start.exit
+  Start.monster
+  Start.treasure
+end
+end
 
+def newfloor
   Clear.floor
-  randmonsterstart
-  randtreasurestart
-  randexitstart
+  Start.floor
   display_grid
 end
 
@@ -134,11 +139,12 @@ end
 class Grid
 
   def initialize
-    startpos
+    Start.all
     display_grid
   end
   def self.next
-    nextpos
+    newfloor
+    $xexists
     $grid[$playery.to_i][$playerx.to_i] = '@'
     display_grid
   end

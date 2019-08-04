@@ -15,8 +15,11 @@ def collisioncheck
     end
 
     if $playerx  == $treasurex && $playery  == $treasurey
+      if $texists == 1
       puts "You picked up some treasure"
       $treasure += 1
+      $texists = 0
+    end
     end
 
     if $playerx  == $exitx && $playery  == $exity
@@ -26,12 +29,16 @@ def collisioncheck
     end
 
     if $monsterx == $treasurex && $monstery == $treasurey
+      if $texists == 1
       puts "The monster stole your treasure!"
       $mtreasure += 1
+      $texists = 0
+    end
     end
 
     if  $monsterx == $exitx && $monstery == $exity
       puts "The monster blocks the exit!"
+      $xexists = 0
     end
 end
 
@@ -45,10 +52,12 @@ def turn
     death
   end
   collisioncheck
-  if $monsterhp > 0
+  if $xexists == 1 && $monsterhp > 0
   # Monstermove.new.send(Monstermove.instance_methods(false).sample)
   Monstermove.ai
   collisioncheck
+elsif $xexists == 0
+  puts "A monster is guarding the exit"
 else
   #delete monster
 end
