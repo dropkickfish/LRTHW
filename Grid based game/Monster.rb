@@ -11,7 +11,7 @@ class Monster
     end
     $monsteratt = (rand(1..3))
     $monsterdef = (rand(1..3))
-    $monsterhp = 10
+    $monsterhp = 5
     $mtreasure = 0
   end
 end

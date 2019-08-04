@@ -20,7 +20,7 @@ You encounter a monster, do you:
    )
    choice = $stdin.gets.chomp
    if choice == "Fight"
-     if $playeratt > $monsterdef
+     if $playeratt > $monsterdef || $monsterhp < 1
        puts "You killed a #{$mpersonality} monster"
        $grid[$monstery.to_i][$monsterx.to_i] = ' '
        $grid[$playery.to_i][$playerx.to_i] = '@'
@@ -33,10 +33,13 @@ You encounter a monster, do you:
          display_grid
        end
      else
-       dmg = rand(1..3)
-       puts "The monster attacks"
-       puts "The monster does #{dmg} dmg points"
-       $playerhp=$playerhp-dmg
+       mdmg = rand(1..3)
+       pdmg = $monsterdef-$playeratt
+       puts "You attack doing #{pdmg} dmg"
+      $monsterhp=$monsterhp-mdmg
+      puts "Monster has #{$monsterhp}"
+      puts "The monster does #{mdmg} dmg"
+      $playerhp=$playerhp-mdmg
        puts "You have #{$playerhp} hp"
        display_grid
        Player.options
