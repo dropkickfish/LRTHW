@@ -26,7 +26,7 @@ def display_grid
   puts  %Q(
       +---+---+---+---+---+
       |   |   |   |   |   |                @ = Player
-      | #{$grid[0][0]} | #{$grid[0][1]} | #{$grid[0][2]} | #{$grid[0][3]} | #{$grid[0][4]} |                M = Monster
+      | #{$grid[0][0]} | #{$grid[0][1]} | #{$grid[0][2]} | #{$grid[0][3]} | #{$grid[0][4]} |                #{$mtoken} = Monster
       |   |   |   |   |   |                £ = Treasure
       +-------------------+                > = Exit
       |   |   |   |   |   |
@@ -58,7 +58,7 @@ def randmonsterstart
   if $grid[$monstery.to_i][$monsterx.to_i].include? '@'
     randmonsterstart
   else
-    $grid[$monstery.to_i][$monsterx.to_i] = 'M'
+    $grid[$monstery.to_i][$monsterx.to_i] = $mtoken
 end
 end
 
@@ -66,7 +66,7 @@ def randtreasurestart
   $treasurex = rand(5)
   $treasurey = rand(4)
 
-  if  $grid[$treasurey.to_i][$treasurex.to_i].include?('@'||'M')
+  if  $grid[$treasurey.to_i][$treasurex.to_i].include?('@'||$mtoken)
     randtreasurestart
 
   else
@@ -79,7 +79,7 @@ end
 def randexitstart
   $exitx = rand(5)
   $exity = rand(4)
-  if   $grid[$exity.to_i][$exitx.to_i].include?('@'||'M'||'£')
+  if   $grid[$exity.to_i][$exitx.to_i].include?('@'||$mtoken||'£')
     randexitstart
   else
   $grid[$exity.to_i][$exitx.to_i] = '>'

@@ -21,7 +21,7 @@ You encounter a monster, do you:
    choice = $stdin.gets.chomp
    if choice == "Fight"
      if $playeratt > $monsterdef
-       puts "You killed the monster"
+       puts "You killed a #{$mpersonality} monster"
        $grid[$monstery.to_i][$monsterx.to_i] = ' '
        $grid[$playery.to_i][$playerx.to_i] = '@'
        $monsterhp=0
@@ -42,7 +42,7 @@ You encounter a monster, do you:
        Player.options
    end
    elsif choice == "Flee"
-     $grid[$monstery.to_i][$monsterx.to_i] = 'M'
+     $grid[$monstery.to_i][$monsterx.to_i] = $mtoken
    puts "You run in a random direction"
 #need to figure out better random system
    $playerx = rand(5)

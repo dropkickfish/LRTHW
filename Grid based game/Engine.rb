@@ -46,7 +46,8 @@ def turn
   end
   collisioncheck
   if $monsterhp > 0
-  Monstermove.new.send(Monstermove.instance_methods(false).sample)
+  # Monstermove.new.send(Monstermove.instance_methods(false).sample)
+  Monstermove.ai
   collisioncheck
 else
   #delete monster

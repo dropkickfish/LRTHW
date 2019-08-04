@@ -1,7 +1,14 @@
 class Monster
   def initialize
-    personalities = [greedy, aggressive, coward]
+    personalities = ["greedy", "aggressive", "cowardly"]
     $mpersonality = personalities.sample
+    if $mpersonality == "greedy"
+      $mtoken = "G"
+    elsif $mpersonality == "aggressive"
+      $mtoken = "A"
+    else
+      $mtoken = "C"
+    end
     $monsteratt = (rand(1..3))
     $monsterdef = (rand(1..3))
     $monsterhp = 10
@@ -12,71 +19,95 @@ end
 
 
 class Monstermove
-  def up
+
+
+
+  def self.up
   oldx = $monsterx
   oldy = $monstery
     $monstery -= 1
     if $monstery.to_i < 0 || $monstery.to_i > 3
       $monstery += 1
-
+    #   if $mpersonality == "cowardly"
+    #   public_send(leftright.sample)
+    # end
     else
-      $grid[$monstery.to_i][$monsterx.to_i] = 'M'
+      $grid[$monstery.to_i][$monsterx.to_i] = $mtoken
       $grid[oldy.to_i][oldx.to_i] = ' '
       puts "The monster has moved"
       display_grid
 end
 end
 
-def down
+def self.down
 oldx = $monsterx
 oldy = $monstery
   $monstery += 1
   if $monstery.to_i < 0 || $monstery.to_i > 3
     $monstery -= 1
-
+  #   if $mpersonality == "cowardly"
+  #   public_send(leftright.sample)
+  # end
   else
-    $grid[$monstery.to_i][$monsterx.to_i] = 'M'
+    $grid[$monstery.to_i][$monsterx.to_i] = $mtoken
     $grid[oldy.to_i][oldx.to_i] = ' '
     puts "The monster has moved"
     display_grid
 end
 end
 
-def left
+def self.left
 oldx = $monsterx
 oldy = $monstery
   $monsterx -= 1
   if $monsterx.to_i < 0 || $monsterx.to_i > 4
     $monsterx += 1
-
+  #   if $mpersonality == "cowardly"
+  #   public_send(updown.sample)
+  # end
   else
-    $grid[$monstery.to_i][$monsterx.to_i] = 'M'
+    $grid[$monstery.to_i][$monsterx.to_i] = $mtoken
     $grid[oldy.to_i][oldx.to_i] = ' '
     puts "The monster has moved"
     display_grid
 end
 end
 
-def right
+def self.right
 oldx = $monsterx
 oldy = $monstery
   $monsterx += 1
   if $monsterx.to_i < 0 || $monsterx.to_i > 4
     $monsterx -= 1
-
+  #   if $mpersonality == "cowardly"
+  #   public_send(updown.sample)
+  # end
   else
-    $grid[$monstery.to_i][$monsterx.to_i] = 'M'
+    $grid[$monstery.to_i][$monsterx.to_i] = $mtoken
     $grid[oldy.to_i][oldx.to_i] = ' '
     puts "The monster has moved"
     display_grid
 end
 end
+
+def self.ai
+  if $mpersonality == "greedy"
+    Ai.greedy
+  elsif $mpersonality == "aggressive"
+    Ai.aggressive
+  else
+    Ai.cowardly
+  end
+
+  # updown = [Monstermove.up, Monstermove.down]
+  # leftright = [Monstermove.left, Monstermove.right]
+
 end
 
 class Ai
   def self.greedy
-    xdiff = Diff($monsterx, $treasurex)
-    ydiff = Diff($monstery, $treasurey)
+    xdiff = $monsterx-$treasurex
+    ydiff = $monstery-$treasurey
     if xdiff == 0
       if ydiff > 0
         Monstermove.up
@@ -88,9 +119,11 @@ class Ai
     else
       Monstermove.right
   end
+end
+
   def self.aggressive
-    xdiff = Diff($monsterx, $playerx)
-    ydiff = Diff($monstery, $playery)
+    xdiff = $monsterx-$treasurex
+    ydiff = $monstery-$treasurey
     if xdiff == 0
       if ydiff > 0
         Monstermove.up
@@ -102,9 +135,11 @@ class Ai
     else
       Monstermove.right
   end
-  def self.coward
-    xdiff = Diff($monsterx, $playerx)
-    ydiff = Diff($monstery, $playery)
+end
+
+  def self.cowardly
+    xdiff = $monsterx-$treasurex
+    ydiff = $monstery-$treasurey
     if xdiff == 0
       if ydiff > 0
         Monstermove.down
@@ -116,4 +151,7 @@ class Ai
     else
       Monstermove.left
   end
+end
+
+end
 end
