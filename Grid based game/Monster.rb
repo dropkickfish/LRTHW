@@ -1,5 +1,7 @@
 class Monster
   def initialize
+    personalities = [greedy, aggressive, coward]
+    $mpersonality = personalities.sample
     $monsteratt = (rand(1..3))
     $monsterdef = (rand(1..3))
     $monsterhp = 10
@@ -7,8 +9,9 @@ class Monster
   end
 end
 
-class Monstermove
 
+
+class Monstermove
   def up
   oldx = $monsterx
   oldy = $monstery
@@ -68,4 +71,49 @@ oldy = $monstery
     display_grid
 end
 end
+end
+
+class Ai
+  def self.greedy
+    xdiff = Diff($monsterx, $treasurex)
+    ydiff = Diff($monstery, $treasurey)
+    if xdiff == 0
+      if ydiff > 0
+        Monstermove.up
+      else
+        Monstermove.down
+      end
+    elsif xdiff >0
+      Monstermove.left
+    else
+      Monstermove.right
+  end
+  def self.aggressive
+    xdiff = Diff($monsterx, $playerx)
+    ydiff = Diff($monstery, $playery)
+    if xdiff == 0
+      if ydiff > 0
+        Monstermove.up
+      else
+        Monstermove.down
+      end
+    elsif xdiff >0
+      Monstermove.left
+    else
+      Monstermove.right
+  end
+  def self.coward
+    xdiff = Diff($monsterx, $playerx)
+    ydiff = Diff($monstery, $playery)
+    if xdiff == 0
+      if ydiff > 0
+        Monstermove.down
+      else
+        Monstermove.up
+      end
+    elsif xdiff >0
+      Monstermove.right
+    else
+      Monstermove.left
+  end
 end
