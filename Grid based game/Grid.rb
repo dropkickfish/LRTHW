@@ -43,7 +43,7 @@ def display_grid
       +---+---+---+---+---+
 
 Debug info
-      Monster goal is #{$mgoalx}, #{$mgoaly}
+      Monster goal is #{$mgoaly}, #{$mgoalx}
       Monster AT  #{$monsteratt}
       Monster DF #{$monsterdef}
       Monster HP #{$monsterhp}

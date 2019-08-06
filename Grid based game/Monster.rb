@@ -123,6 +123,7 @@ end
 end
 
   def self.cowardly
+    Ai.furthestfromplayer
     Ai.movetogoal
   end
 
