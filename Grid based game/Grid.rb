@@ -146,7 +146,7 @@ end
 class Grid
 
   def initialize
-    Start.all
+    Start.floor
     display_grid
   end
   def self.next

@@ -123,7 +123,7 @@ end
 end
 
   def self.cowardly
-    Ai.furthestfromplayer
+    # Ai.furthestfromplayer
     Ai.movetogoal
   end
 
@@ -148,14 +148,14 @@ end
     xdiff = $monsterx-$mgoalx
     ydiff = $monstery-$mgoaly
 
-    if xdiff.abs < ydiff.abs || xdiff == 0
+    if xdiff.abs < ydiff.abs || ydiff == 0
       if xdiff > 0
       Monstermove.left
       else
       Monstermove.right
       end
 
-    elsif ydiff.abs < xdiff.abs || ydiff == 0
+    elsif ydiff.abs < xdiff.abs || xdiff == 0
       if ydiff > 0
         Monstermove.up
       else

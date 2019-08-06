@@ -3,7 +3,7 @@ class Player
     $playeratt = (rand(1..10))
     $playerdef = (rand(1..10))
     $playerhp = 10
-
+    Start.player
   end
 
   def name(input)
@@ -34,6 +34,9 @@ class Playermove
 
 
   def self.up
+    if $mpersonality = "cowardly"
+      Ai.furthestfromplayer
+    end
   oldx = $playerx
   oldy = $playery
     $playery -= 1
@@ -50,6 +53,9 @@ end
 end
 
 def self.down
+  if $mpersonality = "cowardly"
+    Ai.furthestfromplayer
+  end
 oldx = $playerx
 oldy = $playery
   $playery += 1
@@ -66,6 +72,9 @@ end
 end
 
 def self.left
+  if $mpersonality = "cowardly"
+    Ai.furthestfromplayer
+  end
 oldx = $playerx
 oldy = $playery
   $playerx -= 1
@@ -82,6 +91,9 @@ end
 end
 
 def self.right
+  if $mpersonality = "cowardly"
+    Ai.furthestfromplayer
+  end
 oldx = $playerx
 oldy = $playery
   $playerx += 1
