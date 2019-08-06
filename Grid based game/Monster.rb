@@ -153,14 +153,14 @@ def self.movetogoal
   xdiff = $monsterx-$mgoalx
   ydiff = $monstery-$mgoaly
 
-  if xdiff < ydiff
+  if xdiff.abs < ydiff.abs
     if xdiff >0
       Monstermove.right
     else
       Monstermove.left
     end
 
-  elsif ydiff < xdiff
+  elsif ydiff.abs < xdiff.abs
     if ydiff > 0
       Monstermove.down
     else
@@ -169,7 +169,7 @@ def self.movetogoal
 
   else
     Monstermove.new.send(Monstermove.instance_methods(false).sample)
-  
+
 end
 end
 
