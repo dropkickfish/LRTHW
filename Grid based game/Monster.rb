@@ -4,17 +4,21 @@ class Monster
     $mpersonality = personalities.sample
     if $mpersonality == "greedy"
       $mtoken = "G"
+      $mgoalx = $treasurex
+      $mgoaly = $treasurey
     elsif $mpersonality == "aggressive"
       $mtoken = "A"
+      $mgoalx = $playerx
+      $mgoaly = $playery
     else
       $mtoken = "C"
+      Ai.furthestfromplayer
     end
     $monsteratt = (rand(1..3))
     $monsterdef = (rand(1..3))
     $monsterhp = 5
     $mtreasure = 0
-    $mgoalx = 0
-    $mgoaly = 0
+
   end
 end
 
@@ -101,76 +105,66 @@ end
 end
 
 class Ai
+
   def self.greedy
-    xdiff = $monsterx-$treasurex
-    ydiff = $monstery-$treasurey
-    if xdiff == 0
-      if ydiff > 0
-        Monstermove.up
-      else
-        Monstermove.down
-      end
-    elsif xdiff >0
-      Monstermove.left
-    else
-      Monstermove.right
+    $mgoaly = $treasurey
+    $mgoalx = $treasurex
+  if  $texists == 1
+    Ai.movetogoal
+  else
+    Monstermove.new.send(Monstermove.instance_methods(false).sample)
   end
 end
 
   def self.aggressive
-    xdiff = $monsterx-$treasurex
-    ydiff = $monstery-$treasurey
-    if xdiff == 0
-      if ydiff > 0
-        Monstermove.up
-      else
-        Monstermove.down
-      end
-    elsif xdiff >0
-      Monstermove.left
-    else
-      Monstermove.right
-  end
+    $mgoaly = $playery
+    $mgoalx = $playerx
+    Ai.movetogoal
 end
 
   def self.cowardly
-    xdiff = $monsterx-$treasurex
-    ydiff = $monstery-$treasurey
-    if xdiff == 0
-      if ydiff > 0
-        Monstermove.down
-      else
-        Monstermove.up
-      end
-    elsif xdiff >0
-      Monstermove.right
-    else
-      Monstermove.left
+    Ai.movetogoal
   end
-end
 
-def self.movetogoal
-  xdiff = $monsterx-$mgoalx
-  ydiff = $monstery-$mgoaly
+  def self.furthestfromplayer
+    if $playery < 2
+      $mgoaly=3
+    else
+      $mgoaly=0
+    end
 
-  if xdiff.abs < ydiff.abs
-    if xdiff >0
+    if $playerx < 2
+      $mgoalx=4
+    elsif $playerx > 2
+      $mgoalx=0
+    else
+      lr = [0,4]
+      $mgoalx = lr.sample
+    end
+  end
+
+  def self.movetogoal
+    xdiff = $monsterx-$mgoalx
+    ydiff = $monstery-$mgoaly
+
+    if xdiff.abs < ydiff.abs || xdiff == 0
+      if xdiff > 0
       Monstermove.left
-    else
+      else
       Monstermove.right
-    end
+      end
 
-  elsif ydiff.abs < xdiff.abs
-    if ydiff > 0
-      Monstermove.up
+    elsif ydiff.abs < xdiff.abs || ydiff == 0
+      if ydiff > 0
+        Monstermove.up
+      else
+        Monstermove.down
+      end
+
     else
-      Monstermove.down
+      Monstermove.new.send(Monstermove.instance_methods(false).sample)
+
     end
-
-  else
-    Monstermove.new.send(Monstermove.instance_methods(false).sample)
-
-end
 end
 
 def self.move
@@ -182,4 +176,5 @@ def self.move
     Ai.cowardly
   end
 end
+
 end

@@ -42,6 +42,13 @@ def display_grid
       |   |   |   |   |   |                Floor: #{$floor}
       +---+---+---+---+---+
 
+Debug info
+      Monster goal is #{$mgoalx}, #{$mgoaly}
+      Monster AT  #{$monsteratt}
+      Monster DF #{$monsterdef}
+      Monster HP #{$monsterhp}
+      Monster Treasure #{$mtreasure}
+
 )
 end
 
