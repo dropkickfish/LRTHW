@@ -155,16 +155,16 @@ def self.movetogoal
 
   if xdiff.abs < ydiff.abs
     if xdiff >0
-      Monstermove.right
-    else
       Monstermove.left
+    else
+      Monstermove.right
     end
 
   elsif ydiff.abs < xdiff.abs
     if ydiff > 0
-      Monstermove.down
-    else
       Monstermove.up
+    else
+      Monstermove.down
     end
 
   else
