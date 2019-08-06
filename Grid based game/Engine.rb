@@ -54,7 +54,7 @@ def turn
   collisioncheck
   if $xexists == 1 && $monsterhp > 0
   # Monstermove.new.send(Monstermove.instance_methods(false).sample)
-  Monstermove.ai
+  Ai.move
   collisioncheck
 elsif $xexists == 0
   puts "A monster is guarding the exit"

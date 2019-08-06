@@ -13,6 +13,8 @@ class Monster
     $monsterdef = (rand(1..3))
     $monsterhp = 5
     $mtreasure = 0
+    $mgoalx = 0
+    $mgoaly = 0
   end
 end
 
@@ -60,8 +62,9 @@ def self.left
 oldx = $monsterx
 oldy = $monstery
   $monsterx -= 1
-  if $monsterx.to_i < 0 || $monsterx.to_i > 4
+  if $monsterx.to_i < 0
     $monsterx += 1
+
   #   if $mpersonality == "cowardly"
   #   public_send(updown.sample)
   # end
@@ -90,14 +93,7 @@ oldy = $monstery
 end
 end
 
-def self.ai
-  if $mpersonality == "greedy"
-    Ai.greedy
-  elsif $mpersonality == "aggressive"
-    Ai.aggressive
-  else
-    Ai.cowardly
-  end
+
 
   # updown = [Monstermove.up, Monstermove.down]
   # leftright = [Monstermove.left, Monstermove.right]
@@ -153,5 +149,37 @@ end
   end
 end
 
+def self.movetogoal
+  xdiff = $monsterx-$mgoalx
+  ydiff = $monstery-$mgoaly
+
+  if xdiff < ydiff
+    if xdiff >0
+      Monstermove.right
+    else
+      Monstermove.left
+    end
+
+  elsif ydiff < xdiff
+    if ydiff > 0
+      Monstermove.down
+    else
+      Monstermove.up
+    end
+
+  else
+    Monstermove.new.send(Monstermove.instance_methods(false).sample)
+  
+end
+end
+
+def self.move
+  if $mpersonality == "greedy"
+    Ai.greedy
+  elsif $mpersonality == "aggressive"
+    Ai.aggressive
+  else
+    Ai.cowardly
+  end
 end
 end
