@@ -21,6 +21,7 @@ $grid = [
   [' ',' ',' ',' ',' '],
   [' ',' ',' ',' ',' ']
 ]
+# Can improve grid for any size using info here - https://stackoverflow.com/questions/5372701/how-to-declare-an-empty-2-dimensional-array-in-ruby
 
 def display_grid
   puts  %Q(
