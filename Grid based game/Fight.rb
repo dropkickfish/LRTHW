@@ -20,9 +20,9 @@ You encounter a monster, do you:
    )
    choice = $stdin.gets.chomp
    if choice == "Fight"
-     if $playeratt > $monsterdef || $monsterhp < 1
-       display_grid
+     if $playeratt > $monsterdef 
       puts "You killed a #{$mpersonality} monster"
+      display_grid
        $grid[$monstery.to_i][$monsterx.to_i] = ' '
        $grid[$playery.to_i][$playerx.to_i] = '@'
        $monsterhp=0
@@ -43,11 +43,25 @@ You encounter a monster, do you:
        pdmg = $monsterdef-$playeratt
        puts "You attack doing #{pdmg} dmg"
       $monsterhp=$monsterhp-mdmg
-      puts "Monster has #{$monsterhp}"
-      puts "The monster does #{mdmg} dmg"
-      $playerhp=$playerhp-mdmg
-       puts "You have #{$playerhp} hp"
-       display_grid
+          if $monsterhp < 1
+           display_grid
+           puts "You killed a #{$mpersonality} monster"
+           $grid[$monstery.to_i][$monsterx.to_i] = ' '
+           $grid[$playery.to_i][$playerx.to_i] = '@'
+           $monsterhp=0
+           $monsterx = 'nil'
+           $monstery = 'nil'
+           $kills+=1
+
+          else
+           puts "Monster has #{$monsterhp}"
+
+           puts "The monster does #{mdmg} dmg"
+           $playerhp=$playerhp-mdmg
+           puts "You have #{$playerhp} hp"
+           Fight.options
+          end
+
        Player.options
    end
    elsif choice == "Flee"

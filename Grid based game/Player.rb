@@ -34,9 +34,7 @@ class Playermove
 
 
   def self.up
-    if $mpersonality = "cowardly"
-      Ai.furthestfromplayer
-    end
+
   oldx = $playerx
   oldy = $playery
     $playery -= 1
@@ -48,14 +46,15 @@ class Playermove
       $grid[$playery.to_i][$playerx.to_i] = '@'
       $grid[oldy.to_i][oldx.to_i] = ' '
       puts "You moved North"
+      if $mpersonality == "cowardly"
+        Ai.furthestfromplayer
+      end
       display_grid
 end
 end
 
 def self.down
-  if $mpersonality = "cowardly"
-    Ai.furthestfromplayer
-  end
+
 oldx = $playerx
 oldy = $playery
   $playery += 1
@@ -67,14 +66,14 @@ oldy = $playery
     $grid[$playery.to_i][$playerx.to_i] = '@'
     $grid[oldy.to_i][oldx.to_i] = ' '
     puts "You moved South"
+    if $mpersonality == "cowardly"
+      Ai.furthestfromplayer
+    end
     display_grid
 end
 end
 
 def self.left
-  if $mpersonality = "cowardly"
-    Ai.furthestfromplayer
-  end
 oldx = $playerx
 oldy = $playery
   $playerx -= 1
@@ -86,14 +85,14 @@ oldy = $playery
     $grid[$playery.to_i][$playerx.to_i] = '@'
     $grid[oldy.to_i][oldx.to_i] = ' '
     puts "You moved West"
+    if $mpersonality == "cowardly"
+      Ai.furthestfromplayer
+    end
     display_grid
 end
 end
 
 def self.right
-  if $mpersonality = "cowardly"
-    Ai.furthestfromplayer
-  end
 oldx = $playerx
 oldy = $playery
   $playerx += 1
@@ -105,6 +104,9 @@ oldy = $playery
     $grid[$playery.to_i][$playerx.to_i] = '@'
     $grid[oldy.to_i][oldx.to_i] = ' '
     puts "You moved East"
+    if $mpersonality == "cowardly"
+      Ai.furthestfromplayer
+    end
     display_grid
 end
 end

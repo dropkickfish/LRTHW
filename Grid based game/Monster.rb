@@ -18,7 +18,7 @@ class Monster
     $monsterdef = (rand(1..3))
     $monsterhp = 5
     $mtreasure = 0
-
+    $mguarding = 0
   end
 end
 
@@ -32,69 +32,83 @@ class Monstermove
   oldx = $monsterx
   oldy = $monstery
     $monstery -= 1
-    if $monstery.to_i < 0 || $monstery.to_i > 3
-      $monstery += 1
+    # if $monstery.to_i < 0 || $monstery.to_i > 3
+    #   $monstery += 1
     #   if $mpersonality == "cowardly"
     #   public_send(leftright.sample)
     # end
-    else
+    # else
       $grid[$monstery.to_i][$monsterx.to_i] = $mtoken
       $grid[oldy.to_i][oldx.to_i] = ' '
       puts "The monster has moved"
       display_grid
-end
+# end
 end
 
 def self.down
 oldx = $monsterx
 oldy = $monstery
   $monstery += 1
-  if $monstery.to_i < 0 || $monstery.to_i > 3
-    $monstery -= 1
+  # if $monstery.to_i < 0 || $monstery.to_i > 3
+  #   $monstery -= 1
   #   if $mpersonality == "cowardly"
   #   public_send(leftright.sample)
   # end
-  else
+  # else
     $grid[$monstery.to_i][$monsterx.to_i] = $mtoken
     $grid[oldy.to_i][oldx.to_i] = ' '
     puts "The monster has moved"
     display_grid
-end
+# end
 end
 
 def self.left
 oldx = $monsterx
 oldy = $monstery
   $monsterx -= 1
-  if $monsterx.to_i < 0
-    $monsterx += 1
+  # if $monsterx.to_i < 0
+  #   $monsterx += 1
 
   #   if $mpersonality == "cowardly"
   #   public_send(updown.sample)
   # end
-  else
+  # else
     $grid[$monstery.to_i][$monsterx.to_i] = $mtoken
     $grid[oldy.to_i][oldx.to_i] = ' '
     puts "The monster has moved"
     display_grid
-end
+# end
 end
 
 def self.right
 oldx = $monsterx
 oldy = $monstery
   $monsterx += 1
-  if $monsterx.to_i < 0 || $monsterx.to_i > 4
-    $monsterx -= 1
-  #   if $mpersonality == "cowardly"
-  #   public_send(updown.sample)
-  # end
-  else
+  # if $monsterx.to_i < 0 || $monsterx.to_i > 4
+  #   $monsterx -= 1
+  # #   if $mpersonality == "cowardly"
+  # #   public_send(updown.sample)
+  # # end
+  # else
     $grid[$monstery.to_i][$monsterx.to_i] = $mtoken
     $grid[oldy.to_i][oldx.to_i] = ' '
     puts "The monster has moved"
     display_grid
+# end
 end
+
+def self.rand
+  randarr = [1, 2, 3, 4]
+  randmove = randarr.sample
+  if randmove == 1
+    Monstermove.up
+  elsif randmove == 2
+    Monstermove.down
+  elsif randmove == 3
+    Monstermove.left
+  else
+    Monstermove.right
+  end 
 end
 
 
@@ -112,7 +126,8 @@ class Ai
   if  $texists == 1
     Ai.movetogoal
   else
-    Monstermove.new.send(Monstermove.instance_methods(false).sample)
+    Monstermove.rand
+    puts "Monster moved randomly"
   end
 end
 
@@ -147,23 +162,27 @@ end
   def self.movetogoal
     xdiff = $monsterx-$mgoalx
     ydiff = $monstery-$mgoaly
-
-    if xdiff.abs < ydiff.abs || ydiff == 0
-      if xdiff > 0
-      Monstermove.left
-      else
-      Monstermove.right
-      end
-
-    elsif ydiff.abs < xdiff.abs || xdiff == 0
-      if ydiff > 0
+    mleft = xdiff
+    mup = ydiff
+    if xdiff.abs < ydiff.abs || xdiff == 0
+      if mup > 0
         Monstermove.up
+        puts "Monster moved up"
       else
         Monstermove.down
+          puts "Monster moved down"
       end
 
+    elsif ydiff.abs < xdiff.abs || ydiff == 0
+      if mleft > 0
+        Monstermove.left
+        puts "Monster moved left"
+      else
+        Monstermove.right
+        puts "Monster moved right"
+      end
     else
-      Monstermove.new.send(Monstermove.instance_methods(false).sample)
+      Monstermove.rand
 
     end
 end

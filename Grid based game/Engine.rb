@@ -39,6 +39,8 @@ def collisioncheck
     if  $monsterx == $exitx && $monstery == $exity
       puts "The monster blocks the exit!"
       $xexists = 0
+    else 
+      $xexists = 1
     end
 end
 
